@@ -1,19 +1,15 @@
-mod utils;
-
+use chrono::{Datelike, Local};
+use std::env;
 use wasm_bindgen::prelude::*;
 
-// When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
-// allocator.
-#[cfg(feature = "wee_alloc")]
-#[global_allocator]
-static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
-
 #[wasm_bindgen]
-extern {
-    fn alert(s: &str);
-}
+pub fn generate() -> u32 {
+    let local_date = Local::now();
+    let salt_env = env!("SALT");
+    let salt = salt_env.parse::<u32>().unwrap();
+    let yr = local_date.year() as u32;
+    let mo = local_date.month() as u32;
+    let dy = local_date.day() as u32;
 
-#[wasm_bindgen]
-pub fn greet() {
-    alert("Hello, statle-rand!");
+    yr + mo + dy + salt
 }

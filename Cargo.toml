@@ -1,5 +1,5 @@
 [package]
-name = "statle-rand"
+name = "seedgen"
 version = "0.1.0"
 authors = ["Tsubasa SEKIGUCHI <ts@tinykitten.me>"]
 edition = "2018"
@@ -25,6 +25,10 @@ console_error_panic_hook = { version = "0.1.6", optional = true }
 #
 # Unfortunately, `wee_alloc` requires nightly Rust when targeting wasm for now.
 wee_alloc = { version = "0.4.5", optional = true }
+
+[dependencies.chrono]
+version = "0.4"
+features = ["serde", "wasmbind"]
 
 [dev-dependencies]
 wasm-bindgen-test = "0.3.13"
